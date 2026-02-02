@@ -12,11 +12,18 @@
     <h1 class="title">AURA 🌙</h1>
     <p class="subtitle">gentle daily guidance</p>
 
-    <div class="card">
-      <p id="aura-text">今日のAURAを読み込んでいます…</p>
+    <!-- 誕生日入力（初回用） -->
+    <div class="input-area" id="birthday-area">
+      <input type="date" id="birthday" />
+      <button id="save">誕生日を保存</button>
     </div>
 
-    <button id="refresh">今日のサインを見る</button>
+    <!-- AURA表示 -->
+    <div class="card">
+      <p id="aura-text">タップして今日のサインを受け取ってください</p>
+    </div>
+
+    <button id="refresh">今日のサインを受け取る</button>
   </main>
 
   <script src="script.js"></script>
