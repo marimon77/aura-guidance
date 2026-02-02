@@ -3,31 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AURA 🌙</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>AURA｜今日のサイン</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <div class="app">
+    <h1>AURA</h1>
 
-<main class="container">
-  <h1 class="title">AURA 🌙</h1>
-  <p class="subtitle">gentle daily guidance</p>
+    <div class="birth-card" id="birthCard">
+      <input type="date" id="birthday">
+      <button id="saveBirthday">誕生日を保存</button>
+    </div>
 
-  <!-- 誕生日入力（特別感） -->
-  <div class="birth-card" id="birth-card">
-    <p class="birth-title">あなたの印を教えてください</p>
-    <p class="birth-sub">生まれた日をもとに、今日のAURAを調整します</p>
-    <input type="date" id="birthday" />
-    <button id="save">この日で受け取る</button>
+    <div class="aura-text" id="auraText">
+      今日のサインを受け取る準備ができています
+    </div>
+
+    <button id="refresh">今日のサインを受け取る</button>
+
+    <div class="result hidden" id="result">
+      <div class="fortune">
+        今日の運勢：<span id="fortune-stars"></span>
+      </div>
+      <div class="item">
+        ラッキーアイテム：<span id="lucky-item"></span>
+      </div>
+      <div class="color">
+        ラッキーカラー：<span id="lucky-color"></span>
+      </div>
+    </div>
   </div>
 
-  <!-- AURA表示 -->
-  <div class="card">
-    <p id="aura-text">今日のサインを受け取る準備ができています</p>
-  </div>
-
-  <button id="refresh">今日のサインを受け取る</button>
-</main>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
