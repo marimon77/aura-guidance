@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AURA｜今日のサイン</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,27 +13,24 @@
 
   <div class="birth-card" id="birthCard">
     <input type="date" id="birthday">
-    <button id="saveBirthday">誕生日を保存</button>
+    <button type="button" id="saveBirthday">誕生日を保存</button>
   </div>
 
   <div class="aura-text" id="auraText">
     今日のサインを受け取る準備ができています
   </div>
 
-  <button id="refresh">今日のサインを受け取る</button>
+  <button type="button" id="refresh">今日のサインを受け取る</button>
 
-  <!-- タブ -->
   <div class="tabs">
-    <button class="tab active" data-tab="love">❤️ 恋愛</button>
-    <button class="tab" data-tab="work">💼 仕事</button>
-    <button class="tab" data-tab="money">💰 金運</button>
-    <button class="tab" data-tab="health">🌱 健康</button>
+    <button type="button" class="tab active" data-tab="love">❤️ 恋愛</button>
+    <button type="button" class="tab" data-tab="work">💼 仕事</button>
+    <button type="button" class="tab" data-tab="money">💰 金運</button>
+    <button type="button" class="tab" data-tab="health">🌱 健康</button>
   </div>
 
-  <!-- 結果 -->
   <div class="result hidden" id="result">
-
-    <div class="fortune-block" data-type="love">
+    <div class="fortune-block active" data-type="love">
       <div class="stars" id="love-stars"></div>
       <div class="text" id="love-message"></div>
     </div>
@@ -53,13 +50,8 @@
       <div class="text" id="health-message"></div>
     </div>
 
-    <div class="item">
-      ラッキーアイテム：<span id="lucky-item"></span>
-    </div>
-    <div class="color">
-      ラッキーカラー：<span id="lucky-color"></span>
-    </div>
-
+    <div class="item">ラッキーアイテム：<span id="lucky-item"></span></div>
+    <div class="color">ラッキーカラー：<span id="lucky-color"></span></div>
   </div>
 </div>
 
