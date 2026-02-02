@@ -25,12 +25,11 @@ h1 {
   background: rgba(255,255,255,0.08);
   padding: 20px;
   border-radius: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .birth-card.removed {
   display: none;
-  pointer-events: none;
 }
 
 input {
@@ -38,7 +37,6 @@ input {
   padding: 12px;
   border-radius: 10px;
   border: none;
-  font-size: 14px;
   margin-bottom: 12px;
 }
 
@@ -49,7 +47,6 @@ button {
   border: none;
   background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
   color: #000;
-  font-size: 15px;
   cursor: pointer;
 }
 
@@ -58,7 +55,7 @@ button:active {
 }
 
 .aura-text {
-  margin: 24px 0 12px;
+  margin: 20px 0 12px;
   font-size: 14px;
   opacity: 0.85;
 }
@@ -68,12 +65,36 @@ button:active {
   z-index: 20;
 }
 
+/* タブ */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: none;
+  opacity: 0.6;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+  color: #000;
+  opacity: 1;
+}
+
+/* 結果 */
 .result {
-  margin-top: 20px;
-  padding: 20px;
+  padding: 18px;
   border-radius: 16px;
   background: rgba(255,255,255,0.08);
-  animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.5s ease;
   pointer-events: none;
 }
 
@@ -85,21 +106,29 @@ button:active {
   display: none;
 }
 
-.fortune {
-  font-size: 18px;
-  margin-bottom: 10px;
+.fortune-block {
+  display: none;
 }
 
-.message {
+.fortune-block.active {
+  display: block;
+}
+
+.stars {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.text {
   font-size: 14px;
   line-height: 1.6;
-  margin: 14px 0;
   opacity: 0.9;
+  margin-bottom: 14px;
 }
 
 .item,
 .color {
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.9;
 }
 
