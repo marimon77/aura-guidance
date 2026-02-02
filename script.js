@@ -67,6 +67,6 @@ refreshBtn.addEventListener("click", () => {
 });
 
 // 初期制御
-if (localStorage.getItem("aura-birthday")) {
-  birthCard.style.display = "none";
+if (localStorage.getItem("aura-
+    birthCard.remove();
 }
