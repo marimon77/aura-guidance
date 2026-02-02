@@ -1,31 +1,77 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AURA 🌙</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  background: #0f0f1a;
+  color: #f5f5f5;
+}
 
-  <main class="container">
-    <h1 class="title">AURA 🌙</h1>
-    <p class="subtitle">gentle daily guidance</p>
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
 
-    <!-- 誕生日入力（初回用） -->
-    <div class="input-area" id="birthday-area">
-      <input type="date" id="birthday" />
-      <button id="save">誕生日を保存</button>
-    </div>
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 0.2em;
+}
 
-    <!-- AURA表示 -->
-    <div class="card">
-      <p id="aura-text">タップして今日のサインを受け取ってください</p>
-    </div>
+.subtitle {
+  opacity: 0.6;
+  margin-bottom: 1.5em;
+}
 
-    <button id="refresh">今日のサインを受け取る</button>
-  </main>
+.birth-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 320px;
+  margin-bottom: 1.5em;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.birth-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.4em;
+}
+
+.birth-sub {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-bottom: 1em;
+}
+
+.birth-card input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 0.8em;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 320px;
+  margin-bottom: 1.5em;
+}
+
+button {
+  background: #6b6bff;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+}
