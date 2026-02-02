@@ -8,24 +8,26 @@
 </head>
 <body>
 
-  <main class="container">
-    <h1 class="title">AURA 🌙</h1>
-    <p class="subtitle">gentle daily guidance</p>
+<main class="container">
+  <h1 class="title">AURA 🌙</h1>
+  <p class="subtitle">gentle daily guidance</p>
 
-    <!-- 誕生日入力（初回用） -->
-    <div class="input-area" id="birthday-area">
-      <input type="date" id="birthday" />
-      <button id="save">誕生日を保存</button>
-    </div>
+  <!-- 誕生日入力（特別感） -->
+  <div class="birth-card" id="birth-card">
+    <p class="birth-title">あなたの印を教えてください</p>
+    <p class="birth-sub">生まれた日をもとに、今日のAURAを調整します</p>
+    <input type="date" id="birthday" />
+    <button id="save">この日で受け取る</button>
+  </div>
 
-    <!-- AURA表示 -->
-    <div class="card">
-      <p id="aura-text">タップして今日のサインを受け取ってください</p>
-    </div>
+  <!-- AURA表示 -->
+  <div class="card">
+    <p id="aura-text">今日のサインを受け取る準備ができています</p>
+  </div>
 
-    <button id="refresh">今日のサインを受け取る</button>
-  </main>
+  <button id="refresh">今日のサインを受け取る</button>
+</main>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
