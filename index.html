@@ -22,12 +22,36 @@
 
   <button id="refresh">今日のサインを受け取る</button>
 
+  <!-- タブ -->
+  <div class="tabs">
+    <button class="tab active" data-tab="love">❤️ 恋愛</button>
+    <button class="tab" data-tab="work">💼 仕事</button>
+    <button class="tab" data-tab="money">💰 金運</button>
+    <button class="tab" data-tab="health">🌱 健康</button>
+  </div>
+
+  <!-- 結果 -->
   <div class="result hidden" id="result">
-    <div class="fortune">
-      今日の運勢：<span id="fortune-stars"></span>
+
+    <div class="fortune-block" data-type="love">
+      <div class="stars" id="love-stars"></div>
+      <div class="text" id="love-message"></div>
     </div>
 
-    <div class="message" id="fortune-message"></div>
+    <div class="fortune-block" data-type="work">
+      <div class="stars" id="work-stars"></div>
+      <div class="text" id="work-message"></div>
+    </div>
+
+    <div class="fortune-block" data-type="money">
+      <div class="stars" id="money-stars"></div>
+      <div class="text" id="money-message"></div>
+    </div>
+
+    <div class="fortune-block" data-type="health">
+      <div class="stars" id="health-stars"></div>
+      <div class="text" id="health-message"></div>
+    </div>
 
     <div class="item">
       ラッキーアイテム：<span id="lucky-item"></span>
@@ -35,6 +59,7 @@
     <div class="color">
       ラッキーカラー：<span id="lucky-color"></span>
     </div>
+
   </div>
 </div>
 
