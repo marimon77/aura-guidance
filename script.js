@@ -5,56 +5,62 @@ const refreshBtn = document.getElementById("refresh");
 const auraText = document.getElementById("auraText");
 
 const resultBox = document.getElementById("result");
-const fortuneStars = document.getElementById("fortune-stars");
 const luckyItemEl = document.getElementById("lucky-item");
 const luckyColorEl = document.getElementById("lucky-color");
-const fortuneMessage = document.getElementById("fortune-message");
 
-const luckyItems = [
-  "鍵","ノート","腕時計","白い紙","イヤホン",
-  "コーヒー","ハンカチ","スマホケース","本","ペン"
-];
+const tabs = document.querySelectorAll(".tab");
+const blocks = document.querySelectorAll(".fortune-block");
 
-const luckyColors = [
-  "白","青","緑","紫","金","黒","ピンク"
-];
+const luckyItems = ["鍵","ノート","腕時計","ハンカチ","イヤホン"];
+const luckyColors = ["白","青","緑","金","紫"];
 
-const fortuneMessages = {
-  1: [
-    "今日は無理に進まなくて大丈夫。整える日です。",
-    "静かな時間が、次の流れを呼び込みます。"
-  ],
-  2: [
-    "周囲との調和を意識すると安定します。",
-    "聞き役に回ることで運気が整います。"
-  ],
-  3: [
-    "バランスの取れた一日。自然体でOK。",
-    "焦らず進めば良い結果につながります。"
-  ],
-  4: [
-    "直感が冴えています。迷ったら感覚を信じて。",
-    "一歩踏み出すことで流れが変わります。"
-  ],
-  5: [
-    "追い風の日。挑戦するほど運が味方します。",
-    "自信を持って動くことでチャンスが広がります。"
-  ]
+const fortunes = {
+  love: {
+    stars: document.getElementById("love-stars"),
+    text: document.getElementById("love-message"),
+    messages: [
+      "自然体でいることが魅力になります。",
+      "相手の気持ちを尊重すると流れが良くなります。"
+    ]
+  },
+  work: {
+    stars: document.getElementById("work-stars"),
+    text: document.getElementById("work-message"),
+    messages: [
+      "確認を丁寧にすると評価が上がります。",
+      "落ち着いた対応が鍵になります。"
+    ]
+  },
+  money: {
+    stars: document.getElementById("money-stars"),
+    text: document.getElementById("money-message"),
+    messages: [
+      "無駄遣いを控えると安定します。",
+      "小さな得がありそうです。"
+    ]
+  },
+  health: {
+    stars: document.getElementById("health-stars"),
+    text: document.getElementById("health-message"),
+    messages: [
+      "しっかり休むことを意識して。",
+      "軽く体を動かすと気分転換になります。"
+    ]
+  }
 };
 
 function getSeed(birthday) {
   const today = new Date().toISOString().slice(0, 10);
-  const seedStr = birthday + today;
+  let str = birthday + today;
   let hash = 0;
-  for (let i = 0; i < seedStr.length; i++) {
-    hash = seedStr.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
   return Math.abs(hash);
 }
 
 saveBtn.addEventListener("click", () => {
   if (!birthdayInput.value) return;
-
   localStorage.setItem("aura-birthday", birthdayInput.value);
   birthCard.classList.add("removed");
   auraText.textContent = "準備が整いました。今日のサインを受け取ってください 🌙";
@@ -69,14 +75,36 @@ refreshBtn.addEventListener("click", () => {
   if (!birthday) return;
 
   const seed = getSeed(birthday);
-  const stars = (seed % 5) + 1;
+  let i = 0;
 
-  fortuneStars.textContent = "★".repeat(stars);
+  for (const key in fortunes) {
+    const stars = ((seed + i * 3) % 5) + 1;
+    fortunes[key].stars.textContent = "★".repeat(stars);
+    fortunes[key].text.textContent =
+      fortunes[key].messages[seed % fortunes[key].messages.length];
+    i++;
+  }
+
   luckyItemEl.textContent = luckyItems[seed % luckyItems.length];
   luckyColorEl.textContent = luckyColors[seed % luckyColors.length];
 
-  const messages = fortuneMessages[stars];
-  fortuneMessage.textContent = messages[seed % messages.length];
-
   resultBox.classList.remove("hidden");
+
+  // 初期表示
+  blocks.forEach(b => b.classList.remove("active"));
+  document.querySelector('[data-type="love"]').classList.add("active");
+});
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    blocks.forEach(block => {
+      block.classList.remove("active");
+      if (block.dataset.type === tab.dataset.tab) {
+        block.classList.add("active");
+      }
+    });
+  });
 });
