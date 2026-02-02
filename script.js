@@ -8,24 +8,21 @@ const auraList = [
   "静かな時間がヒントをくれそう。"
 ];
 
-function getTodayAura() {
-  const today = new Date().toDateString();
-  let hash = 0;
-
-  for (let i = 0; i < today.length; i++) {
-    hash += today.charCodeAt(i);
-  }
-
-  return auraList[hash % auraList.length];
-}
-
 const auraText = document.getElementById("aura-text");
 const refreshBtn = document.getElementById("refresh");
 
-function showAura() {
-  auraText.textContent = getTodayAura();
+function getTodayAura() {
+  const today = new Date().toDateString();
+  let hash = 0;
+  for (let i = 0; i < today.length; i++) {
+    hash += today.charCodeAt(i);
+  }
+  return auraList[hash % auraList.length];
 }
 
-refreshBtn.addEventListener("click", showAura);
+// 初期状態は伏せる
+auraText.textContent = "タップして今日のサインを受け取ってください";
 
-showAura();
+refreshBtn.addEventListener("click", () => {
+  auraText.textContent = getTodayAura();
+});
