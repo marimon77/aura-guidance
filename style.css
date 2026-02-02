@@ -77,7 +77,7 @@ button:active {
 }
 
 .hidden {
-  display: none;
+  display: auto;
 }
 
 .fortune {
