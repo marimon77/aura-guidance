@@ -1,9 +1,5 @@
+// AURAメッセージ一覧（30個）
 const auraList = [
-  "今日は無理に進まなくていい日。整えることで流れが戻ります。",
-  "直感を信じて大丈夫。小さな選択があとで効いてきます。",
-  "少し距離を取ることで見えるものがありそう。",
-  "今日は受け取る側に回って。与えるのはまた今度。",
-  "焦らなくていい。今は準備のタイミング。",
   "焦らなくていい。止まっているように見えて、ちゃんと進んでる。",
   "今日は結果よりも、整えることが大事な日。",
   "今は準備のタイミング。動けない自分を責めなくていい。",
@@ -35,23 +31,41 @@ const auraList = [
   "小さな違和感を大切に。",
   "今日は深呼吸から始めてみて。"
 ];
-];
 
 const auraText = document.getElementById("aura-text");
 const refreshBtn = document.getElementById("refresh");
+const birthdayInput = document.getElementById("birthday");
+const saveBtn = document.getElementById("save");
+const birthdayArea = document.getElementById("birthday-area");
 
-function getTodayAura() {
+// 誕生日保存
+saveBtn.addEventListener("click", () => {
+  const birthday = birthdayInput.value;
+  if (!birthday) return;
+  localStorage.setItem("aura-birthday", birthday);
+  birthdayArea.style.display = "none";
+});
+
+// 個人化AURA生成
+function getPersonalAura() {
+  const birthday = localStorage.getItem("aura-birthday") || "";
   const today = new Date().toDateString();
   let hash = 0;
-  for (let i = 0; i < today.length; i++) {
-    hash += today.charCodeAt(i);
+  const base = birthday + today;
+
+  for (let i = 0; i < base.length; i++) {
+    hash += base.charCodeAt(i);
   }
+
   return auraList[hash % auraList.length];
 }
 
-// 初期状態は伏せる
-auraText.textContent = "タップして今日のサインを受け取ってください";
-
+// ボタン押下時
 refreshBtn.addEventListener("click", () => {
-  auraText.textContent = getTodayAura();
+  auraText.textContent = getPersonalAura();
 });
+
+// 初期表示制御
+if (localStorage.getItem("aura-birthday")) {
+  birthdayArea.style.display = "none";
+}
