@@ -1,77 +1,72 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: #0f0f1a;
-  color: #f5f5f5;
+// 星座判定
+function getZodiac(month, day) {
+  const zodiac = [
+    ["山羊座", 1, 20], ["水瓶座", 2, 19], ["魚座", 3, 20],
+    ["牡羊座", 4, 20], ["牡牛座", 5, 20], ["双子座", 6, 21],
+    ["蟹座", 7, 22], ["獅子座", 8, 22], ["乙女座", 9, 22],
+    ["天秤座",10,23], ["蠍座",11,22], ["射手座",12,21],
+    ["山羊座",12,31]
+  ];
+  for (let i = 0; i < zodiac.length; i++) {
+    if (month === zodiac[i][1] && day <= zodiac[i][2]) {
+      return zodiac[i][0];
+    }
+  }
+  return "山羊座";
 }
 
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
+// 星座別メッセージ
+const auraByZodiac = {
+  "牡羊座": ["今日は直感を信じて動いて大丈夫。"],
+  "牡牛座": ["焦らず、心地よさを優先して。"],
+  "双子座": ["小さな会話がヒントになりそう。"],
+  "蟹座": ["感情を守る選択をして正解。"],
+  "獅子座": ["自分を信じて前に出ていい日。"],
+  "乙女座": ["整えることで流れが良くなる。"],
+  "天秤座": ["無理に決めなくて大丈夫。"],
+  "蠍座": ["深く考えすぎなくていい。"],
+  "射手座": ["視野を広げるとチャンスが見える。"],
+  "山羊座": ["今は積み重ねを信じて。"],
+  "水瓶座": ["あなたらしさが鍵になる日。"],
+  "魚座": ["静かな時間が答えをくれる。"]
+};
+
+const auraText = document.getElementById("aura-text");
+const refreshBtn = document.getElementById("refresh");
+const saveBtn = document.getElementById("save");
+const birthdayInput = document.getElementById("birthday");
+const birthCard = document.getElementById("birth-card");
+
+// 誕生日保存
+saveBtn.addEventListener("click", () => {
+  if (!birthdayInput.value) return;
+  localStorage.setItem("aura-birthday", birthdayInput.value);
+  birthCard.style.display = "none";
+  auraText.textContent = "準備が整いました。今日のサインを受け取ってください 🌙";
+});
+
+// AURA生成
+function getAura() {
+  const birthday = localStorage.getItem("aura-birthday");
+  if (!birthday) return "まだ印が設定されていません";
+
+  const date = new Date(birthday);
+  const zodiac = getZodiac(date.getMonth() + 1, date.getDate());
+
+  const today = new Date().toDateString();
+  let hash = 0;
+  for (let c of zodiac + today) hash += c.charCodeAt(0);
+
+  const list = auraByZodiac[zodiac];
+  return `${zodiac}のあなたへ：${list[hash % list.length]}`;
 }
 
-.title {
-  font-size: 2.2rem;
-  margin-bottom: 0.2em;
-}
+// ボタン
+refreshBtn.addEventListener("click", () => {
+  auraText.textContent = getAura();
+});
 
-.subtitle {
-  opacity: 0.6;
-  margin-bottom: 1.5em;
-}
-
-.birth-card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  padding: 20px;
-  max-width: 320px;
-  margin-bottom: 1.5em;
-}
-
-.birth-title {
-  font-size: 0.95rem;
-  margin-bottom: 0.4em;
-}
-
-.birth-sub {
-  font-size: 0.75rem;
-  opacity: 0.6;
-  margin-bottom: 1em;
-}
-
-.birth-card input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  margin-bottom: 0.8em;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-.card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 320px;
-  margin-bottom: 1.5em;
-}
-
-button {
-  background: #6b6bff;
-  color: white;
-  border: none;
-  border-radius: 999px;
-  padding: 12px 24px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(0.98);
+// 初期制御
+if (localStorage.getItem("aura-birthday")) {
+  birthCard.style.display = "none";
 }
